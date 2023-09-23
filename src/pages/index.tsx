@@ -1,7 +1,4 @@
-import Card from "@/components/Card";
 import Head from "next/head";
-
-
 
 export default function Home() {
   return (
