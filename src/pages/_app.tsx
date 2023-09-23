@@ -26,11 +26,11 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="twitter:description" content="해커톤 네트워킹의 정석" />
         <meta
           property="og:image"
-          content="https://user-images.githubusercontent.com/50096419/270124408-fe7c7155-76ca-4e77-b285-e078744abd37.png"
+          content="https://user-images.githubusercontent.com/50096419/270125099-d5bf8db6-5be6-4c28-ad4a-5d7a3385cd40.png"
         />
         <meta
           name="twitter:image"
-          content="https://user-images.githubusercontent.com/50096419/270124408-fe7c7155-76ca-4e77-b285-e078744abd37.png"
+          content="https://user-images.githubusercontent.com/50096419/270125099-d5bf8db6-5be6-4c28-ad4a-5d7a3385cd40.png"
         />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
@@ -41,3 +41,4 @@ export default function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
