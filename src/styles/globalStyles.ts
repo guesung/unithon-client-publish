@@ -1,6 +1,21 @@
 import { createGlobalStyle } from "styled-components";
 
+import pretendardBold from "../asstes/fonts/Pretendard-Bold.woff2";
+import pretendardRegular from "../asstes/fonts/Pretendard-Regular.woff2";
+
 const GlobalStyle = createGlobalStyle`
+   @font-face {
+    font-family: "Pretendard";
+    font-weight: normal;
+    src: url(${pretendardRegular}) format("woff2");
+  }
+
+  @font-face {
+    font-family: "Pretendard";
+    font-weight: bold;
+    src: url(${pretendardBold}) format("woff2");
+  }
+
   html {
     font-size: 62.5%;
   }
@@ -17,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "baseFont";
+    font-family: "Pretendard";
   }
   a {
     -webkit-tap-highlight-color: transparent;
