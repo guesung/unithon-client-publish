@@ -2,24 +2,24 @@ import { HTMLAttributes } from "react";
 import styled from "styled-components";
 
 export default function Badge({
-  active,
+  selected,
   children,
   ...props
-}: { active?: boolean; children: React.ReactNode } & HTMLAttributes<HTMLSpanElement>) {
+}: { selected?: boolean; children: React.ReactNode } & HTMLAttributes<HTMLSpanElement>) {
   return (
-    <StyledBadge active={active} {...props}>
+    <StyledBadge selected={selected} {...props}>
       {children}
     </StyledBadge>
   );
 }
 
-const StyledBadge = styled.span<{ active?: boolean }>`
+const StyledBadge = styled.span<{ selected?: boolean }>`
   padding: 0.2rem 1.2rem;
   border-radius: 1rem;
   font-weight: 500;
   // @TODO: colors should be defined in theme
   ${props =>
-    props.active
+    props.selected
       ? `
           background-color: #f2f4fb;
           color: #4473f5;

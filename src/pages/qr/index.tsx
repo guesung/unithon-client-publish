@@ -83,7 +83,7 @@ const StyledDottedHRWrapper = styled.div`
 function DottedHR() {
   return (
     <svg width="300" height="2" viewBox="0 0 300 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <line y1="1.46429" x2="300" y2="1.46429" stroke="#D2D1D1" stroke-width="1.07143" stroke-dasharray="2.14 2.14" />
+      <line y1="1.46429" x2="300" y2="1.46429" stroke="#D2D1D1" strokeWidth="1.07143" strokeDasharray="2.14 2.14" />
     </svg>
   );
 }

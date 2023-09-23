@@ -2,7 +2,6 @@ import styled from "styled-components";
 import EmaiIcon from "./icon/Email";
 import Building from "./icon/Building";
 import Link from "next/link";
-import Image from "next/image";
 import Github from "./icon/Github";
 import LinkedIn from "./icon/linkedIn";
 import Instagram from "./icon/Instagram";
@@ -33,7 +32,7 @@ export default function Card({ cardData }: CardProps) {
           <IntroductionBottom>
             <Introduce>{introduce}</Introduce>
           </IntroductionBottom>
-          <Badge active={true}>{annual}년차</Badge>
+          <Badge selected={true}>{annual}년차</Badge>
         </Introduction>
         <AvatarWrapper>
           <Avatar size="MEDIUM" position={position} />
