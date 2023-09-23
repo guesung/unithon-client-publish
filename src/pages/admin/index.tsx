@@ -7,7 +7,7 @@ import Step2 from "./components/Step2";
 import styled from "styled-components";
 
 export default function Page() {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
 
   return (
     <AdminLayout>

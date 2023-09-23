@@ -1,3 +1,3 @@
 export type CSVForm = {
-  file: File;
+  file: FormData;
 };
