@@ -78,7 +78,8 @@ export default function FilterBottomSheet() {
 const SheetWrapper = styled(Sheet)``;
 
 const SheetContainerWrapper = styled(Sheet.Container)`
-  border-radius: 3rem !important;
+  border-top-left-radius: 3rem !important;
+  border-top-right-radius: 3rem !important;
   padding-left: 4rem;
   padding-right: 4rem;
 `;
