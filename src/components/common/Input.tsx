@@ -41,4 +41,6 @@ const BaseInput = styled.input<{ size: Size }>`
   color: #2d2d2d;
 
   ${noInputNumberArrow}
+
+  height: 2rem;
 `;
