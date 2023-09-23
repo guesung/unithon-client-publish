@@ -1,14 +1,20 @@
 import WebAppLayout from "@/components/WebAppLayout";
 import Button from "@/components/common/Button";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 export default function QR() {
+  const router = useRouter();
+
+  const handleCTAButtonAction = () => {
+    router.push("/login");
+  };
+
   return (
     <WebAppLayout backgroundcolor="#F2F4FB">
       <StyledQRCardWrapper>
-        <ExampleQR />
-
+        <LoginQR />
         <StyledDottedHRWrapper>
           <DottedHR />
         </StyledDottedHRWrapper>
@@ -17,7 +23,7 @@ export default function QR() {
           <StyledWelcomeText>해커톤에서 초대장이 도착했어요!</StyledWelcomeText>
         </StyledTextContentsWrapper>
         <StyledCTAWrapper>
-          <Button size="medium" label="바로 가기" />
+          <Button size="medium" label="바로 가기" onClick={handleCTAButtonAction} />
         </StyledCTAWrapper>
       </StyledQRCardWrapper>
     </WebAppLayout>
@@ -61,10 +67,10 @@ const StyledQRWrapper = styled.div`
   padding: 4rem 0;
 `;
 
-function ExampleQR() {
+function LoginQR() {
   return (
     <StyledQRWrapper>
-      <Image src='/qr.png' width='180' height='180' alt='qr' />
+      <Image src="/qr.png" width="180" height="180" alt="qr" />
     </StyledQRWrapper>
   );
 }
