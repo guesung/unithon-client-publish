@@ -153,7 +153,7 @@ export default function Page() {
 const positions = [
   { key: "FRONT_END", value: "Front-end" },
   { key: "BACK_END", value: "Back-end" },
-  { key: "DESIN", value: "Design" },
+  { key: "DESIGN", value: "Design" },
   { key: "ANDROID", value: "Android" },
   { key: "IOS", value: "Ios" },
   { key: "ETC", value: "Etc" },
