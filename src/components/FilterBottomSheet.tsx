@@ -4,15 +4,35 @@ import styled from "styled-components";
 import Refresh from "./icon/Refresh";
 import Close from "./icon/Close";
 import { Spacing } from "@/styles/Spacing";
+import Button from "./common/Button";
+import BottomFixedDiv from "./BottomFixedDiv";
+import useUserListQuery from "@/queries/useUserListQuery";
+import { Order, Position } from "@/types/profile";
 
-const TAG_ANNUAL_LIST = ["연차 높은 순", "연차 낮은 순"];
+const TAG_ANNUAL_LIST = [
+  { label: "연차 높은 순", value: "DESC" },
+  { label: "연차 낮은 순", value: "ASC" },
+];
 
-const TAG_POSITION_LIST = ["전체", "front-end", "back-end", "Design", "IOS", "Android", "기타"];
+const TAG_POSITION_LIST = [
+  { label: "전체", value: "ALL" },
+  { label: "front-end", value: "FRONT_END" },
+  { label: "back-end", value: "BACK_END" },
+  { label: "Design", value: "DESIGN" },
+  { label: "IOS", value: "IOS" },
+  { label: "Android", value: "ANDROID" },
+  { label: "기타", value: "ETC" },
+];
 
 export default function FilterBottomSheet() {
   const [isOpen, setOpen] = useState(false);
   const [selectedAnnualTag, setSelectedAnnualTag] = useState("연차 높은 순");
   const [selectedPositionTag, setSelectedPositionTag] = useState("전체");
+
+  const { refetch } = useUserListQuery(
+    TAG_POSITION_LIST.find(it => it.label === selectedPositionTag)?.value as Position,
+    TAG_ANNUAL_LIST.find(it => it.label === selectedAnnualTag)?.value as Order,
+  );
 
   const handleAnnualTagClick = (tag: string) => {
     setSelectedAnnualTag(tag);
@@ -27,10 +47,14 @@ export default function FilterBottomSheet() {
   const handleCloseClick = () => {
     setOpen(false);
   };
+  const handleFilterClick = () => {
+    refetch();
+    setOpen(false);
+  };
 
   return (
     <>
-      <button onClick={() => setOpen(true)}>필터</button>
+      <button onClick={() => setOpen(true)}>옵션</button>
 
       <SheetWrapper isOpen={isOpen} onClose={() => setOpen(false)} snapPoints={[600]}>
         <SheetContainerWrapper>
@@ -39,7 +63,7 @@ export default function FilterBottomSheet() {
             <SheetHeaderLeft>
               <Refresh onClick={handleRefreshClick} />
             </SheetHeaderLeft>
-            <SheetHeaderMiddle>검색필터</SheetHeaderMiddle>
+            <SheetHeaderMiddle>검색 옵션</SheetHeaderMiddle>
 
             <SheetHeaderRight>
               <Close onClick={handleCloseClick} />
@@ -51,22 +75,33 @@ export default function FilterBottomSheet() {
             <Spacing size={20} />
             <TagList>
               {TAG_ANNUAL_LIST.map(tag => (
-                <Tag key={tag} isSelected={selectedAnnualTag === tag} onClick={() => handleAnnualTagClick(tag)}>
-                  {tag}
+                <Tag
+                  key={tag.label}
+                  isselected={selectedAnnualTag === tag.label}
+                  onClick={() => handleAnnualTagClick(tag.label)}
+                >
+                  {tag.label}
                 </Tag>
               ))}
             </TagList>
             <Spacing size={30} />
-            <SubTitle>분야 정렬</SubTitle>
+            <SubTitle>분야 필터</SubTitle>
             <Spacing size={20} />
             <TagList>
               {TAG_POSITION_LIST.map(tag => (
-                <Tag key={tag} isSelected={selectedPositionTag === tag} onClick={() => handlePositionTagClick(tag)}>
-                  {tag}
+                <Tag
+                  key={tag.label}
+                  isselected={selectedPositionTag === tag.label}
+                  onClick={() => handlePositionTagClick(tag.label)}
+                >
+                  {tag.label}
                 </Tag>
               ))}
             </TagList>
             <Spacing size={30} />
+            <BottomFixedDiv>
+              <Button size="medium" label="시작하기" onClick={handleFilterClick} />
+            </BottomFixedDiv>
           </Sheet.Content>
         </SheetContainerWrapper>
         <Sheet.Backdrop />
@@ -75,7 +110,13 @@ export default function FilterBottomSheet() {
   );
 }
 
-const SheetWrapper = styled(Sheet)``;
+const SheetWrapper = styled(Sheet)`
+  max-width: 40rem;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+`;
 
 const SheetContainerWrapper = styled(Sheet.Container)`
   border-top-left-radius: 3rem !important;
@@ -118,8 +159,8 @@ const TagList = styled.div`
   gap: 1rem;
 `;
 
-const Tag = styled.span<{ isSelected: boolean }>`
-  color: ${props => (props.isSelected ? "#4473F5" : "#585858")};
+const Tag = styled.span<{ isselected: boolean }>`
+  color: ${props => (props.isselected ? "#4473F5" : "#585858")};
   font-family: Pretendard;
   font-size: 1.6rem;
   font-style: normal;
@@ -132,3 +173,5 @@ const Tag = styled.span<{ isSelected: boolean }>`
   padding-bottom: 0.85rem;
   border-radius: 2rem;
 `;
+
+
