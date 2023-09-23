@@ -3,21 +3,19 @@ import Button from "@/components/common/Button";
 import Input from "@/components/common/Input";
 import useLoginQuery from "@/queries/useLoginQuery";
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
+import { FormEvent } from "react";
+import { useForm } from "react-hook-form";
 import { styled } from "styled-components";
 
 export default function Page() {
-  const [value, setValue] = useState("");
-  const { refetch } = useLoginQuery(value);
+  const { register, getValues, watch } = useForm({ values: { phone: "" } });
+  const { refetch } = useLoginQuery(watch().phone);
   const router = useRouter();
-  const handleChange = (value: string) => {
-    setValue(value);
-  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (value.length < 11) {
+    if (getValues().phone.length < 11) {
       return;
     }
 
@@ -32,7 +30,7 @@ export default function Page() {
         <Title>네트워킹을 시작하세요</Title>
       </TitleWrapper>
       <FormWrapper onSubmit={handleSubmit}>
-        <Input type="number" size="large" value={value} placeholder="휴대폰 번호 입력" onChange={handleChange} />
+        <Input type="number" size="large" placeholder="휴대폰 번호 입력" register={register("phone")} />
         <Button type="submit" size="medium" label="휴대폰 번호로 시작하기" />
       </FormWrapper>
     </WebAppLayout>

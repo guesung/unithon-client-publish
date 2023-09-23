@@ -1,11 +1,11 @@
-import Card from "@/components/Card";
 import FilterBottomSheet from "@/components/FilterBottomSheet";
+import Card from "@/components/Card";
 import WebAppLayout from "@/components/WebAppLayout";
 import { DUMMY_CARD_LIST } from "@/constants/DUMMY_DATA";
 import { Spacing } from "@/styles/Spacing";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export default function Page() {
+export default function page() {
   return (
     <WebAppLayout backgroundcolor="#F2F4FB">
       <TitleMiddle>명함 목록</TitleMiddle>

@@ -1,27 +1,23 @@
 import { noInputNumberArrow } from "@/styles";
-import { ChangeEvent, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
+import { ChangeEvent, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes, forwardRef } from "react";
 import { styled } from "styled-components";
 
 type Size = "large" | "medium";
 
-interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "size"> {
+interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   size: Size;
-  value: string;
-  onChange: (value: string) => void;
+  value?: string;
+  register: any;
 }
 
-const Input = ({ size, value, onChange, ...arg }: Props) => {
-  const handeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value);
-  };
-
+const Input = forwardRef<HTMLInputElement, Props>(({ size, register, ...arg }, ref) => {
   return (
     <Wrapper size={size}>
-      <BaseInput size={size} value={value} onChange={handeChange} {...arg} />
+      <BaseInput size={size} {...arg} {...register} />
     </Wrapper>
   );
-};
-
+});
+Input.displayName = "Input";
 export default Input;
 
 const Wrapper = styled.div<{ size: Size }>`
