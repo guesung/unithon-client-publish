@@ -1,11 +1,11 @@
 import { useQuery } from "react-query";
 import queryKeys from "./queryKeys";
-import axios from "axios";
 import { ProfileForm } from "@/types/profile";
 import { queryClient } from "@/pages/_app";
+import httpClient from "@/services/httClient";
 
 const fetch = async (phoneNumber: string) => {
-  const { data } = await axios.get<ProfileForm>("/users/user", { params: { phoneNumber } });
+  const { data } = await httpClient.get<ProfileForm>("/users/info", { params: { phoneNumber } });
   return data;
 };
 
