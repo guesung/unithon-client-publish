@@ -36,6 +36,7 @@ export default function Page() {
         name: body.name,
         email: body.email,
         organization: body.organization,
+        introduce: body.introduce,
         position,
         annual,
         phoneNumber: phone,
