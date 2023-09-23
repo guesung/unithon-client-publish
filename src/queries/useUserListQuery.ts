@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import querykeys from "./queryKeys";
 import { Order, Position, Profile } from "@/types/profile";
-import httpClient from "@/services/httClient";
+import httpClient from "@/services/httpClient";
 
 const fetch = async (position: Position, order: Order) => {
   const { data } = await httpClient.get<Profile[]>("/users", { params: { position, orderType: order } });

@@ -21,8 +21,9 @@ export default function Page() {
       return;
     }
 
-    refetch();
-    router.push("createProfile");
+    refetch().finally(() => {
+      router.push(`createProfile?phoneNumber=${getValues().phone}`);
+    });
   };
 
   return (

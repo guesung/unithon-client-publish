@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import queryKeys from "./queryKeys";
 import { ProfileForm } from "@/types/profile";
 import { queryClient } from "@/pages/_app";
-import httpClient from "@/services/httClient";
+import httpClient from "@/services/httpClient";
 
 const fetch = async (phoneNumber: string) => {
   const { data } = await httpClient.get<ProfileForm>("/users/info", { params: { phoneNumber } });

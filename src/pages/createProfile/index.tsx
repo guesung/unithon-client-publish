@@ -6,7 +6,7 @@ import Select from "@/components/common/Select";
 import { getLoginQueryData } from "@/queries/useLoginQuery";
 import useProfilMutation from "@/queries/useProfileMutation";
 import { Position, Profile, ProfileForm } from "@/types/profile";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { styled } from "styled-components";
@@ -17,11 +17,12 @@ interface Inputs {
 }
 
 export default function Page() {
+  const searchParams = useSearchParams();
   const data = getLoginQueryData();
   const [position, setPosition] = useState(data?.position);
   const [annual, setAnnual] = useState(data?.annual);
-  const { handleSubmit, register } = useForm<ProfileForm & { introduce: string }>({
-    values: { ...data, introduce: "" },
+  const { handleSubmit, register } = useForm<ProfileForm & { introduce: string; urls: [] }>({
+    defaultValues: { ...data, introduce: "" },
   });
   const { mutateAsync } = useProfilMutation();
   const router = useRouter();
@@ -33,9 +34,11 @@ export default function Page() {
     setAnnual(Number(key));
   };
 
+  const phone = searchParams.get("phoneNumber");
   const onSubmit = (body: ProfileForm & { introduce: string }) => {
-    if (position && annual) {
-      mutateAsync({ ...body, position, annual }).then(() => {
+    console.log("?@!#", data);
+    if (position && annual && phone) {
+      mutateAsync({ ...body, position, annual, phoneNumber: phone }).then(() => {
         router.push("user");
       });
     }
@@ -89,7 +92,7 @@ export default function Page() {
           <Select
             placeholder="경력을 선택해주세요."
             items={annuals}
-            itemKey={String(annual)}
+            itemKey={annual === null ? "0" : String(annual)}
             onSelect={handleAnnualSelect}
           />
         </InputWrapper>
@@ -106,6 +109,13 @@ export default function Page() {
           </LabelWrapper>
           <Input size="medium" placeholder="자기소개를 입력해주세요." register={register("introduce")} />
         </InputWrapper>
+        <InputWrapper>
+          <LabelWrapper>
+            <Label>링크</Label>
+          </LabelWrapper>
+          {/* <Input size="medium" placeholder="주소를 입력해주세요." register={register("urls")} /> */}
+        </InputWrapper>
+
         <Button type="submit" size="medium" label="시작하기" />
       </InputContainer>
     </WebAppLayout>

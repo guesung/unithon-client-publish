@@ -1,6 +1,6 @@
 import { useMutation } from "react-query";
 import { Profile } from "@/types/profile";
-import httpClient from "@/services/httClient";
+import httpClient from "@/services/httpClient";
 import { CSVForm } from "@/types/csv";
 
 const fetch = async (params: CSVForm) => {
