@@ -55,17 +55,17 @@ export default function Card({ cardData }: CardProps) {
         </DetailLeft>
         <DetailRight>
           {githubUrl && (
-            <Icon href={githubUrl}>
+            <Icon href={githubUrl} target="_blank">
               <Github />
             </Icon>
           )}
           {linkedInUrl && (
-            <Icon href={linkedInUrl}>
+            <Icon href={linkedInUrl} target="_blank">
               <LinkedIn />
             </Icon>
           )}
           {instagramUrl && (
-            <Icon href={instagramUrl}>
+            <Icon href={instagramUrl} target="_blank">
               <Instagram />
             </Icon>
           )}
