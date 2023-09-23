@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 export default function Page() {
   return (
-    <WebAppLayout backgroundcolor="#F2F4FB">
+    <WebAppLayout innerbackgroundcolor="#F2F4FB">
       <TitleMiddle>명함 목록</TitleMiddle>
       <Introducion>
         <IntroductionTop>

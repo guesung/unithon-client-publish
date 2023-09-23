@@ -9,13 +9,13 @@ interface Item {
 }
 
 interface Props {
-  placeholder: string;
+  label: string;
   itemKey?: Item["key"];
   items: Item[];
   onSelect: (key: string) => void;
 }
 
-const Select = ({ placeholder, itemKey, items, onSelect }: Props) => {
+const Select = ({ label, itemKey, items, onSelect }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
 
@@ -29,7 +29,7 @@ const Select = ({ placeholder, itemKey, items, onSelect }: Props) => {
 
   return (
     <Wrapper ref={ref} onClick={handleOpenClick}>
-      {item ? <Value>{item?.value}</Value> : <Placeholder>{placeholder}</Placeholder>}
+      {item ? <Value>{item?.value}</Value> : <Label>{label}</Label>}
       <ArrowDownIcon />
       {isOpen && <SelectItemList items={items} onSelect={onSelect} />}
     </Wrapper>
@@ -74,7 +74,7 @@ const Value = styled.p`
   color: #2d2d2d;
 `;
 
-const Placeholder = styled.p`
+const Label = styled.p`
   width: 100%;
   font-size: 1.2rem;
   font-weight: 400;
@@ -83,14 +83,12 @@ const Placeholder = styled.p`
 
 const ListWrapper = styled.div`
   position: absolute;
-  z-index: 10;
   top: calc(100% + 10px);
   left: 0;
   width: 100%;
   padding: 0.4rem 0;
   border: 0.1rem solid #d2d1d1;
   border-radius: 0.8rem;
-  background-color: #fff;
 `;
 
 const Item = styled.p`
