@@ -70,7 +70,7 @@ const StyledQRWrapper = styled.div`
 function LoginQR() {
   return (
     <StyledQRWrapper>
-      <Image src="/qr.png" width="180" height="180" alt="qr" />
+      <Image src="/qr.svg" width="180" height="180" alt="qr" />
     </StyledQRWrapper>
   );
 }
