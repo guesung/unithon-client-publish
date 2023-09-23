@@ -26,6 +26,8 @@ export default function Page() {
       <Spacing size={32} />
 
       <CardListContainer filter={filter} setFilter={setFilter} />
+
+      <Spacing size={32} />
     </WebAppLayout>
   );
 }

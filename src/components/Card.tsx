@@ -7,28 +7,38 @@ import Github from "./icon/Github";
 import LinkedIn from "./icon/linkedIn";
 import Instagram from "./icon/Instagram";
 import { Profile } from "@/types/profile";
+import Avatar from "./avatar/Avatar";
+import Badge from "./badge/Badge";
 
 interface CardProps {
   cardData: Profile;
 }
 
 export default function Card({ cardData }: CardProps) {
-  const { name, email, position, organization, annual, introduce } = cardData;
+  const { name, email, position, organization, annual, introduce, profile_url } = cardData;
+
+  const githubUrl = profile_url.find(url => url.includes("github.com"));
+  const linkedInUrl = profile_url.find(url => url.includes("linkedin.com"));
+  const instagramUrl = profile_url.find(url => url.includes("instagram.com"));
 
   return (
     <CardWrapper>
-      <Introduction>
-        <IntroductionTop>
-          <Name>{name}</Name>
-          <Position>{position}</Position>
-        </IntroductionTop>
-        <Spacing size={12} />
-        <IntroductionBottom>
-          <Introduce>{introduce}</Introduce>
-        </IntroductionBottom>
-      </Introduction>
-      <Spacing size={23} />
-      {annual}년차
+      <IntroductionWrapper>
+        <Introduction>
+          <IntroductionTop>
+            <Name>{name}</Name>
+            <Position>{position}</Position>
+          </IntroductionTop>
+          <Spacing size={12} />
+          <IntroductionBottom>
+            <Introduce>{introduce}</Introduce>
+          </IntroductionBottom>
+          <Badge active={true}>{annual}년차</Badge>
+        </Introduction>
+        <AvatarWrapper>
+          <Avatar size="MEDIUM" position={position} />
+        </AvatarWrapper>
+      </IntroductionWrapper>
       <Spacing size={10} />
       <Diviser />
       <Spacing size={10} />
@@ -44,7 +54,7 @@ export default function Card({ cardData }: CardProps) {
             {organization}
           </Organization>
         </DetailLeft>
-        {/* <DetailRight>
+        <DetailRight>
           {githubUrl && (
             <Icon href={githubUrl}>
               <Github />
@@ -60,7 +70,7 @@ export default function Card({ cardData }: CardProps) {
               <Instagram />
             </Icon>
           )}
-        </DetailRight> */}
+        </DetailRight>
       </Detail>
     </CardWrapper>
   );
@@ -69,10 +79,12 @@ export default function Card({ cardData }: CardProps) {
 const CardWrapper = styled.section`
   background-color: #fff;
   border-radius: 1rem;
-  padding-left: 2.4rem;
-  padding-right: 2.4rem;
-  padding-top: 2.4rem;
-  padding-bottom: 2rem;
+  padding: 2rem 2.4rem;
+`;
+
+const IntroductionWrapper = styled.div`
+  display: grid;
+  grid-auto-flow: column;
 `;
 
 const Introduction = styled.div``;
@@ -81,6 +93,11 @@ const IntroductionTop = styled.div`
   display: flex;
   align-items: center;
   gap: 0.4rem;
+`;
+
+const AvatarWrapper = styled.div`
+  display: grid;
+  justify-content: end;
 `;
 
 const Spacing = styled.div<{ size: number }>`
@@ -103,7 +120,14 @@ const Diviser = styled.div`
 
 const IntroductionBottom = styled.div``;
 
-const Introduce = styled.div``;
+const Introduce = styled.div`
+  height: 4rem;
+  width: 19rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+`;
 
 const Detail = styled.div`
   display: flex;
@@ -114,7 +138,7 @@ const DetailLeft = styled.div``;
 
 const DetailRight = styled.div`
   display: flex;
-  align-items: center;
+  align-items: end;
   gap: 0.8rem;
 `;
 
@@ -123,8 +147,6 @@ const Icon = styled(Link)`
   height: 2.4rem;
   border-radius: 50%;
 `;
-
-const IconImage = styled(Image)``;
 
 const Email = styled.div`
   display: flex;

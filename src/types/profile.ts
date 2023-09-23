@@ -8,9 +8,7 @@ export interface ProfileForm {
 
 export interface Profile extends ProfileForm {
   introduce?: string;
-  githubUrl?: string;
-  linkedInUrl?: string;
-  instagramUrl?: string;
+  profile_url: string[];
 }
 
 export type Position = "FRONT_END" | "BACK_END" | "DESIGN" | "ANDROID" | "IOS" | "ETC" | "ALL";

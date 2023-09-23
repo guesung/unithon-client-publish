@@ -3,12 +3,16 @@ import Image from "next/image";
 import { HTMLAttributes } from "react";
 import styled from "styled-components";
 
+type Size = "BIG" | "MEDIUM";
+
 export default function Avatar({
+  size = "BIG",
   profileImageUrl,
   position,
   uploadButton,
   ...props
 }: {
+  size: Size;
   profileImageUrl?: string;
   position?: Position;
   uploadButton?: boolean;
@@ -17,25 +21,25 @@ export default function Avatar({
     position === "FRONT_END" || position === "BACK_END" || position === "ANDROID" || position === "IOS";
 
   return (
-    <StyledAvatarWrapper {...props}>
+    <StyledAvatarWrapper size={size} {...props}>
       <StyledPositionIconWrapper>
         {profileImageUrl ? (
           <Image
             src={profileImageUrl}
             alt="profile image"
-            width={120}
-            height={120}
+            width={size === "MEDIUM" ? 90 : 120}
+            height={size === "MEDIUM" ? 90 : 120}
             style={{
               borderRadius: "6rem",
               objectFit: "cover",
             }}
           />
         ) : isPositionDeveloper ? (
-          <DeveloperIcon />
+          <DeveloperIcon size={size} />
         ) : position === "DESIGN" ? (
-          <DesignerIcon />
+          <DesignerIcon size={size} />
         ) : (
-          <ETCIcon />
+          <ETCIcon size={size} />
         )}
       </StyledPositionIconWrapper>
       {uploadButton && (
@@ -47,9 +51,9 @@ export default function Avatar({
   );
 }
 
-const StyledAvatarWrapper = styled.div`
-  width: 12rem;
-  height: 12rem;
+const StyledAvatarWrapper = styled.div<{ size: Size }>`
+  ${({ size }) => (size === "MEDIUM" ? `width: 9rem; height: 9rem;` : `width: 12rem; height: 12rem;`)}
+
   border-radius: 6rem;
 `;
 
@@ -86,9 +90,12 @@ const StyledPlusIconWrapper = styled.div`
   align-items: center;
 `;
 
-function DeveloperIcon() {
+function DeveloperIcon({ size }: { size: Size }) {
+  const width = size === "MEDIUM" ? 90 : 120;
+  const height = size === "MEDIUM" ? 90 : 120;
+
   return (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="60" cy="60" r="60" fill="#4473F5" />
       <path
         d="M39.8159 79.8472C39.7864 80.0074 39.9441 80.2958 40.0137 80.4312C40.4861 81.3499 40.891 82.2926 41.409 83.1891C41.8426 83.9396 42.1551 84.6782 42.7292 85.3441C43.3424 86.0554 43.8931 86.8282 44.5513 87.4998C47.3244 90.3291 51.1765 92.0974 55.0379 92.84C56.4896 93.1192 58.0569 93.1824 59.5173 92.962C60.0793 92.8772 60.6386 92.7618 61.1936 92.6385C61.8334 92.4963 62.4498 92.4404 63.0617 92.197C64.0009 91.8234 64.9826 91.5264 65.8695 91.0343C66.2888 90.8017 66.7147 90.5654 67.1361 90.3392C67.4476 90.1719 67.7737 89.9417 68.1249 89.8811"
@@ -104,9 +111,12 @@ function DeveloperIcon() {
   );
 }
 
-function DesignerIcon() {
+function DesignerIcon({ size }: { size: Size }) {
+  const width = size === "MEDIUM" ? 90 : 120;
+  const height = size === "MEDIUM" ? 90 : 120;
+
   return (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="60" cy="60" r="60" fill="#EA726F" />
       <rect x="29" y="32.31" width="4" height="11" rx="2" transform="rotate(-35.2746 29 32.31)" fill="#2D2D2D" />
       <rect
@@ -146,9 +156,12 @@ function DesignerIcon() {
   );
 }
 
-function ETCIcon() {
+function ETCIcon({ size }: { size: Size }) {
+  const width = size === "MEDIUM" ? 90 : 120;
+  const height = size === "MEDIUM" ? 90 : 120;
+
   return (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="60" cy="60" r="60" fill="#FAD554" />
       <circle cx="43" cy="52" r="18" fill="white" />
       <circle cx="43" cy="52" r="10" fill="#2D2D2D" />
