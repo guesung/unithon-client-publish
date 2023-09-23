@@ -1,10 +1,9 @@
-import { noInputNumberArrow } from "@/styles";
-import { ChangeEvent, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
+import { ChangeEvent, HTMLAttributes } from "react";
 import { styled } from "styled-components";
 
 type Size = "large" | "medium";
 
-interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "size"> {
+interface Props extends Omit<HTMLAttributes<HTMLInputElement>, "onChange"> {
   size: Size;
   value: string;
   onChange: (value: string) => void;
@@ -43,6 +42,4 @@ const BaseInput = styled.input<{ size: Size }>`
   font-size: ${({ size }) => (size === "large" ? "1.6rem" : "1.2rem")};
   font-weight: 400;
   color: #2d2d2d;
-
-  ${noInputNumberArrow}
 `;
