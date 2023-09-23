@@ -73,7 +73,8 @@ const TitleMiddle = styled.h1`
 `;
 
 const Title = styled.div`
-  font-family: Pretendard;
+  display: flex;
+  align-items: center;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;

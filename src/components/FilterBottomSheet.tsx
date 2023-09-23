@@ -8,6 +8,7 @@ import Button from "./common/Button";
 import BottomFixedDiv from "./BottomFixedDiv";
 import useUserListQuery from "@/queries/useUserListQuery";
 import { Order, Position } from "@/types/profile";
+import OptionIcon from "./icon/OptionIcon";
 
 const TAG_ANNUAL_LIST = [
   { label: "연차 높은 순", value: "DESC" },
@@ -54,7 +55,10 @@ export default function FilterBottomSheet({
 
   return (
     <>
-      <button onClick={() => setOpen(true)}>옵션</button>
+      <OptionWrapper onClick={() => setOpen(true)}>
+        <OptionIcon />
+        <OptionLabel>옵션</OptionLabel>
+      </OptionWrapper>
 
       <SheetWrapper isOpen={isOpen} onClose={() => setOpen(false)} snapPoints={[600]}>
         <SheetContainerWrapper>
@@ -172,4 +176,19 @@ const Tag = styled.span<{ isselected: boolean }>`
   padding-top: 0.85rem;
   padding-bottom: 0.85rem;
   border-radius: 2rem;
+`;
+const OptionWrapper = styled.div`
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid #f2f2f2;
+  background-color: #ffffff;
+  border-radius: 4px;
+`;
+const OptionLabel = styled.p`
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #585858;
 `;
