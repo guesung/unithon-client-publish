@@ -1,6 +1,7 @@
 import Button from "@/components/common/Button";
 import Input from "@/components/common/Input";
 import CloudArrowUpSolid from "@/components/icon/CloudArrowUpSolid";
+import File from "@/components/icon/File";
 import useCSVMutation from "@/queries/useCSVMutation";
 import { Spacing } from "@/styles/Spacing";
 import { useForm } from "react-hook-form";
@@ -22,6 +23,8 @@ export default function Step1({ handleNextClick }: Step1Props) {
     handleNextClick();
   };
 
+  const isFileUploaded = !!watch("csv");
+
   return (
     <div>
       <Spacing size={90} />
@@ -38,10 +41,20 @@ export default function Step1({ handleNextClick }: Step1Props) {
       <SubTitle>파일 첨부</SubTitle>
       <Spacing size={10} />
 
-      <CSVInputLabel htmlFor="csv">
-        <CloudArrowUpSolid />
-        <LabelText>CSV 파일을 업로드 할 수 있습니다.</LabelText>
+      <CSVInputLabel htmlFor="csv" isFileUploaded={isFileUploaded}>
+        {!isFileUploaded ? (
+          <>
+            <CloudArrowUpSolid />
+            <LabelText color="#8D8D8D">CSV 파일을 업로드 할 수 있습니다.</LabelText>
+          </>
+        ) : (
+          <>
+            <File />
+            <LabelText color="#4473F5">CSV 파일이 업로드 되었습니다.</LabelText>
+          </>
+        )}
       </CSVInputLabel>
+
       <HiddenInput {...register("csv", { required: true })} id="csv" type="file" />
 
       <Spacing size={100} />
@@ -72,7 +85,7 @@ const HiddenInput = styled.input`
   display: none;
 `;
 
-const CSVInputLabel = styled.label`
+const CSVInputLabel = styled.label<{ isFileUploaded: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,12 +94,12 @@ const CSVInputLabel = styled.label`
   width: 34rem;
   height: 16rem;
   border-radius: 4px;
-  border: 2px dashed var(--GRAY3, #d2d1d1);
-  background: var(--WHITE, #fff);
+  border: ${({ isFileUploaded }) => (!isFileUploaded ? "1px dashed #D2D1D1" : "1px solid #4473F5")};
+  background-color: ${({ isFileUploaded }) => (!isFileUploaded ? "#FFFFFF" : "#F2F4FB")};
 `;
 
-const LabelText = styled.p`
-  color: var(--GRAY2, #8d8d8d);
+const LabelText = styled.p<{ color: string }>`
+  color: ${({ color }) => color};
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;

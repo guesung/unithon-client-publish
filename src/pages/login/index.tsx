@@ -16,7 +16,7 @@ export default function Page() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (getValues().phone.length < 11) {
+    if (getValues().phone.length !== 11) {
       setLoginInput({ ...loginInput, error: true });
       return;
     }
@@ -33,7 +33,13 @@ export default function Page() {
         <Title>네트워킹을 시작하세요</Title>
       </TitleWrapper>
       <FormWrapper onSubmit={handleSubmit}>
-        <Input type="number" size="large" placeholder="휴대폰 번호 입력" register={register("phone")} />
+        <Input
+          type="tel"
+          size="large"
+          placeholder="휴대폰 번호 입력"
+          register={register("phone", { pattern: /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/ })}
+          maxLength={11}
+        />
         <HelperTextWrapper>{loginInput.error && <div>01012345678 형식으로 입력해주세요</div>}</HelperTextWrapper>
         <Button type="submit" size="medium" label="휴대폰 번호로 시작하기" />
       </FormWrapper>
@@ -56,8 +62,9 @@ const FormWrapper = styled.form`
 `;
 
 const HelperTextWrapper = styled.span`
-  height: 2rem;
-  display: grid;
-  justify-content: center;
+  height: 3rem;
+  display: flex;
+  justify-content: end;
   align-items: center;
+  color: red;
 `;
