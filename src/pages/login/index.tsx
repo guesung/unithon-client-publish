@@ -29,7 +29,7 @@ export default function Page() {
   return (
     <WebAppLayout>
       <TitleWrapper>
-        <Title>지금 뫄뫄뫄와</Title>
+        <Title>지금 저기여와</Title>
         <Title>네트워킹을 시작하세요</Title>
       </TitleWrapper>
       <FormWrapper onSubmit={handleSubmit}>
