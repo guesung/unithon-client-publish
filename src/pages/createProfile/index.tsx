@@ -17,7 +17,13 @@ export default function Page() {
   const [position, setPosition] = useState(data?.position);
   const [annual, setAnnual] = useState(data?.annual === null ? 0 : data?.annual);
   const { handleSubmit, register } = useForm<Profile>({
-    defaultValues: { ...data, introduce: "", githubUrl: "", linkedInUrl: "", instagramUrl: "" },
+    defaultValues: {
+      ...data,
+      introduce: "",
+      githubUrl: data?.profile_url?.[0],
+      linkedInUrl: data?.profile_url?.[1],
+      instagramUrl: data?.profile_url?.[2],
+    },
   });
   const { mutateAsync } = useProfilMutation();
   const router = useRouter();

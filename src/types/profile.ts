@@ -4,6 +4,7 @@ export interface ProfileForm {
   position?: Position;
   organization?: string;
   annual?: number;
+  profile_url?: (string | undefined)[];
 }
 
 export interface Profile extends ProfileForm {
@@ -11,7 +12,6 @@ export interface Profile extends ProfileForm {
   githubUrl?: string;
   linkedInUrl?: string;
   instagramUrl?: string;
-  profile_url?: (string | undefined)[];
 }
 
 export type Position = "FRONT_END" | "BACK_END" | "DESIGN" | "ANDROID" | "IOS" | "ETC" | "ALL";
