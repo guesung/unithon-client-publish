@@ -19,7 +19,7 @@ export default function Page() {
   const { handleSubmit, register } = useForm<Profile>({
     defaultValues: {
       ...data,
-      introduce: "",
+      introduce: data?.introduce,
       githubUrl: data?.profile_url?.[0],
       linkedInUrl: data?.profile_url?.[1],
       instagramUrl: data?.profile_url?.[2],

@@ -3,12 +3,12 @@ export interface ProfileForm {
   email?: string;
   position?: Position;
   organization?: string;
+  introduce?: string;
   annual?: number;
   profile_url?: (string | undefined)[];
 }
 
 export interface Profile extends ProfileForm {
-  introduce?: string;
   githubUrl?: string;
   linkedInUrl?: string;
   instagramUrl?: string;
