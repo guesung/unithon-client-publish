@@ -27,7 +27,7 @@ const InnerWrapper = styled.div<{ backgroundcolor: string }>`
   position: relative;
   min-height: 100vh;
   width: 100%;
-  max-width: 450px;
+  max-width: 400px;
   ${props =>
     `
       background-color: ${props.backgroundcolor};
