@@ -1,8 +1,13 @@
+import Button from "@/components/common/Button";
 import CircleCheckSolid from "@/components/icon/CircleCheckSolid";
+import { Spacing } from "@/styles/Spacing";
 import styled from "styled-components";
 
-interface Step2Props {}
-export default function Step2() {
+interface Step2Props {
+  handleNextClick: () => void;
+}
+
+export default function Step2(props: Step2Props) {
   return (
     <Step2Wrapper>
       <CircleCheckSolid />
@@ -11,6 +16,10 @@ export default function Step2() {
         <br />
         되었습니다.
       </Title>
+
+      <Spacing size={100} />
+
+      <Button size="medium" label="이벤트 보기" onClick={props.handleNextClick} />
     </Step2Wrapper>
   );
 }
