@@ -1,9 +1,9 @@
-import { HTMLAttributes } from "react";
+import { ButtonHTMLAttributes, HTMLAttributes } from "react";
 import { styled } from "styled-components";
 
 type Size = "small" | "medium";
 
-interface Props extends HTMLAttributes<HTMLButtonElement> {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   size: Size;
   label: string;
 }
