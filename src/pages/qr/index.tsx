@@ -12,7 +12,7 @@ export default function QR() {
   };
 
   return (
-    <WebAppLayout backgroundcolor="#F2F4FB">
+    <WebAppLayout innerbackgroundcolor="#F2F4FB">
       <StyledQRCardWrapper>
         <LoginQR />
         <StyledDottedHRWrapper>

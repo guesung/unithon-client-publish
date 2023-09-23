@@ -1,36 +1,44 @@
-import React, { useRef, useState } from "react";
+import AdminLayout from "@/components/AdminLayout";
+import WebAppLayout from "@/components/WebAppLayout";
+import { useState } from "react";
 
-export default function Admin() {
-  return <UploadCSV />;
-}
+import Step1 from "./components/Step1";
+import Step2 from "./components/Step2";
+import styled from "styled-components";
 
-function UploadCSV() {
-  const [uploading, setUploading] = useState(false);
-  const inputRef = useRef();
-
-  const handleUploadCSV = () => {
-    setUploading(true);
-    // @TODO fetch CSV
-  };
+export default function Page() {
+  const [step, setStep] = useState(1);
 
   return (
-    <>
-      <CSVInput uploading={uploading} ref={inputRef} />
-      <UploadButton uploading={uploading} handleUploadCSV={handleUploadCSV} />
-    </>
+    <AdminLayout>
+      <WebAppLayout
+        transitionx="12rem"
+        innerbackgroundcolor="#FFFFFF"
+        outerbackgroundcolor="#F2F4FB"
+        leftSide={
+          <MainTitle>
+            해커톤
+            <br />
+            네트워킹의 정석
+          </MainTitle>
+        }
+      >
+        {step === 1 && <Step1 handleNextClick={() => setStep(2)} />}
+        {step === 2 && <Step2 />}
+      </WebAppLayout>
+    </AdminLayout>
   );
 }
 
-const CSVInput = React.forwardRef(_CSVInput);
-
-function _CSVInput({ uploading }: { uploading: boolean }) {
-  return <input disabled={uploading} type="file" />;
-}
-
-function UploadButton({ uploading, handleUploadCSV }: { uploading: boolean; handleUploadCSV: () => void }) {
-  return (
-    <button disabled={uploading} onClick={handleUploadCSV}>
-      upload
-    </button>
-  );
-}
+const MainTitle = styled.h1`
+  color: var(--BLACK, #282931);
+  font-family: Pretendard;
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: start;
+`;
