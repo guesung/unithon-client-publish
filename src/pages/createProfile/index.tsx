@@ -61,6 +61,7 @@ export default function Page() {
             size="medium"
             placeholder="본인의 실명을 작성해주세요."
             register={register("name", { required: true })}
+            type="text"
           />
         </InputWrapper>
         <InputWrapper>
@@ -84,6 +85,7 @@ export default function Page() {
             size="medium"
             placeholder="소속을 입력해주세요. (ex. oo고등학교, oo회사)"
             register={register("organization", { required: true })}
+            type="text"
           />
         </InputWrapper>
         <InputWrapper>
@@ -103,7 +105,12 @@ export default function Page() {
             <Label>이메일</Label>
             <Required>*</Required>
           </LabelWrapper>
-          <Input size="medium" placeholder="이메일을 입력해주세요." register={register("email", { required: true })} />
+          <Input
+            size="medium"
+            placeholder="이메일을 입력해주세요."
+            register={register("email", { required: true })}
+            type="email"
+          />
         </InputWrapper>
         <InputWrapper>
           <LabelWrapper>
