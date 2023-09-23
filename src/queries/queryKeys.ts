@@ -7,7 +7,7 @@ export enum QUERY_KEY_NAMESPACE {
 
 const QUERY_KEY = {
   login: [QUERY_KEY_NAMESPACE.LOGIN],
-  userList: (position: Position, order: Order) => [QUERY_KEY_NAMESPACE.USER_LIST, position, order],
+  userList: [QUERY_KEY_NAMESPACE.USER_LIST],
 };
 
 export default QUERY_KEY;
