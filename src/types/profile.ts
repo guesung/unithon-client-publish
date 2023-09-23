@@ -13,5 +13,5 @@ export interface Profile extends ProfileForm {
   instagramUrl?: string;
 }
 
-export type Position = "FRONT_END" | "BACK_END" | "DESIGN" | "ANDROID" | "IOS" | "ETC";
+export type Position = "FRONT_END" | "BACK_END" | "DESIGN" | "ANDROID" | "IOS" | "ETC" | "ALL";
 export type Order = "ASC" | "DESC";

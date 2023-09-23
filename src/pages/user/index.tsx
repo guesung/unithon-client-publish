@@ -1,11 +1,15 @@
 import Card from "@/components/Card";
 import FilterBottomSheet from "@/components/FilterBottomSheet";
 import WebAppLayout from "@/components/WebAppLayout";
-import { DUMMY_CARD_LIST } from "@/constants/DUMMY_DATA";
+import useUserListQuery from "@/queries/useUserListQuery";
 import { Spacing } from "@/styles/Spacing";
+import { Order, Position } from "@/types/profile";
+import { useState } from "react";
 import styled from "styled-components";
 
 export default function Page() {
+  const [filter, setFilter] = useState<{ position: Position; order: Order }>({ position: "ALL", order: "DESC" });
+
   return (
     <WebAppLayout innerbackgroundcolor="#F2F4FB">
       <TitleMiddle>명함 목록</TitleMiddle>
@@ -21,21 +25,39 @@ export default function Page() {
 
       <Spacing size={32} />
 
+      <CardListContainer filter={filter} setFilter={setFilter} />
+    </WebAppLayout>
+  );
+}
+
+function CardListContainer({
+  filter,
+  setFilter,
+}: {
+  filter: { position: Position; order: Order };
+  setFilter: ({ position, order }: { position: Position; order: Order }) => void;
+}) {
+  const userLists = useUserListQuery(filter.position, filter.order, true);
+
+  const handleFilter = ({ position, order }: { position?: Position; order?: Order }) => {
+    setFilter({ position: position || filter.position, order: order || filter.order });
+  };
+
+  return (
+    <>
       <Title>
         <TitleLeft>명함 목록</TitleLeft>
         <TitleRight>
-          <FilterBottomSheet />
+          <FilterBottomSheet filter={filter} handleFilter={handleFilter} />
         </TitleRight>
       </Title>
 
       <Spacing size={22} />
 
-      <CardList>
-        {DUMMY_CARD_LIST.map(cardData => (
-          <Card cardData={cardData} key={cardData.phoneNumber} />
-        ))}
-      </CardList>
-    </WebAppLayout>
+      {!userLists.isFetching && userLists.data?.user_list.length === 0 && <div>해당하는 분이 없어요!</div>}
+
+      <CardList>{userLists.data?.user_list.map((cardData, idx) => <Card cardData={cardData} key={idx} />)}</CardList>
+    </>
   );
 }
 

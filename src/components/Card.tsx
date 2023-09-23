@@ -6,37 +6,14 @@ import Image from "next/image";
 import Github from "./icon/Github";
 import LinkedIn from "./icon/linkedIn";
 import Instagram from "./icon/Instagram";
+import { Profile } from "@/types/profile";
 
 interface CardProps {
-  cardData: {
-    name: string;
-    email: string;
-    phoneNumber: string;
-    position: "FRONT_END" | "BACK_END" | "DESIGN" | "ANDROID" | "IOS"; // etc.
-    organization: string;
-    annual: number;
-    profileImageUrl: string;
-    introduce: string;
-    githubUrl?: string;
-    linkedInUrl?: string;
-    instagramUrl?: string;
-  };
+  cardData: Profile;
 }
 
 export default function Card({ cardData }: CardProps) {
-  const {
-    name,
-    email,
-    phoneNumber,
-    position,
-    organization,
-    annual,
-    profileImageUrl,
-    introduce,
-    githubUrl,
-    linkedInUrl,
-    instagramUrl,
-  } = cardData;
+  const { name, email, position, organization, annual, introduce } = cardData;
 
   return (
     <CardWrapper>
@@ -67,7 +44,7 @@ export default function Card({ cardData }: CardProps) {
             {organization}
           </Organization>
         </DetailLeft>
-        <DetailRight>
+        {/* <DetailRight>
           {githubUrl && (
             <Icon href={githubUrl}>
               <Github />
@@ -83,7 +60,7 @@ export default function Card({ cardData }: CardProps) {
               <Instagram />
             </Icon>
           )}
-        </DetailRight>
+        </DetailRight> */}
       </Detail>
     </CardWrapper>
   );

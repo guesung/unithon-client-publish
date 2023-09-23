@@ -24,25 +24,25 @@ const TAG_POSITION_LIST = [
   { label: "기타", value: "ETC" },
 ];
 
-export default function FilterBottomSheet() {
+export default function FilterBottomSheet({
+  filter,
+  handleFilter,
+}: {
+  filter: { position: Position; order: Order };
+  handleFilter: ({ position, order }: { position: Position; order: Order }) => void;
+}) {
   const [isOpen, setOpen] = useState(false);
-  const [selectedAnnualTag, setSelectedAnnualTag] = useState("연차 높은 순");
-  const [selectedPositionTag, setSelectedPositionTag] = useState("전체");
 
-  const { refetch } = useUserListQuery(
-    TAG_POSITION_LIST.find(it => it.label === selectedPositionTag)?.value as Position,
-    TAG_ANNUAL_LIST.find(it => it.label === selectedAnnualTag)?.value as Order,
-  );
+  const { refetch } = useUserListQuery(filter.position, filter.order);
 
-  const handleAnnualTagClick = (tag: string) => {
-    setSelectedAnnualTag(tag);
+  const handleAnnualTagClick = (tag: Order) => {
+    handleFilter({ ...filter, order: tag });
   };
-  const handlePositionTagClick = (tag: string) => {
-    setSelectedPositionTag(tag);
+  const handlePositionTagClick = (tag: Position) => {
+    handleFilter({ ...filter, position: tag });
   };
   const handleRefreshClick = () => {
-    setSelectedAnnualTag("연차 높은 순");
-    setSelectedPositionTag("전체");
+    handleFilter({ position: "ALL", order: "DESC" });
   };
   const handleCloseClick = () => {
     setOpen(false);
@@ -77,8 +77,8 @@ export default function FilterBottomSheet() {
               {TAG_ANNUAL_LIST.map(tag => (
                 <Tag
                   key={tag.label}
-                  isselected={selectedAnnualTag === tag.label}
-                  onClick={() => handleAnnualTagClick(tag.label)}
+                  isselected={filter.order === tag.value}
+                  onClick={() => handleAnnualTagClick(tag.value as Order)}
                 >
                   {tag.label}
                 </Tag>
@@ -91,8 +91,8 @@ export default function FilterBottomSheet() {
               {TAG_POSITION_LIST.map(tag => (
                 <Tag
                   key={tag.label}
-                  isselected={selectedPositionTag === tag.label}
-                  onClick={() => handlePositionTagClick(tag.label)}
+                  isselected={filter.position === tag.value}
+                  onClick={() => handlePositionTagClick(tag.value as Position)}
                 >
                   {tag.label}
                 </Tag>
@@ -173,5 +173,3 @@ const Tag = styled.span<{ isselected: boolean }>`
   padding-bottom: 0.85rem;
   border-radius: 2rem;
 `;
-
-
