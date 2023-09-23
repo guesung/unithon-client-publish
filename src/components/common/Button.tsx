@@ -1,14 +1,19 @@
+import { HTMLAttributes } from "react";
 import { styled } from "styled-components";
 
 type Size = "small" | "medium";
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLButtonElement> {
   size: Size;
   label: string;
 }
 
-const Button = ({ size, label }: Props) => {
-  return <BaseButton size={size}>{label}</BaseButton>;
+const Button = ({ size, label, ...arg }: Props) => {
+  return (
+    <BaseButton size={size} {...arg}>
+      {label}
+    </BaseButton>
+  );
 };
 
 const BaseButton = styled.button<{ size: Size }>`
