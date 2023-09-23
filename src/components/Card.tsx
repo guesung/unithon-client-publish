@@ -17,9 +17,9 @@ interface CardProps {
 export default function Card({ cardData }: CardProps) {
   const { name, email, position, organization, annual, introduce, profile_url } = cardData;
 
-  const githubUrl = profile_url.find(url => url.includes("github.com"));
-  const linkedInUrl = profile_url.find(url => url.includes("linkedin.com"));
-  const instagramUrl = profile_url.find(url => url.includes("instagram.com"));
+  const githubUrl = profile_url?.find(url => url?.includes("github.com"));
+  const linkedInUrl = profile_url?.find(url => url?.includes("linkedin.com"));
+  const instagramUrl = profile_url?.find(url => url?.includes("instagram.com"));
 
   return (
     <CardWrapper>

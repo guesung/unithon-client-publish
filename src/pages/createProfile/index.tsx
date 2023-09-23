@@ -39,7 +39,7 @@ export default function Page() {
         position,
         annual,
         phoneNumber: phone,
-        profileUrl: [body.githubUrl, body.linkedInUrl, body.instagramUrl],
+        profile_url: [body.githubUrl, body.linkedInUrl, body.instagramUrl],
       }).then(() => {
         router.push("user");
       });
