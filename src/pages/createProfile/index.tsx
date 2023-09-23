@@ -11,18 +11,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { styled } from "styled-components";
 
-interface Inputs {
-  label: string;
-  isRequired: boolean;
-}
-
 export default function Page() {
   const searchParams = useSearchParams();
   const data = getLoginQueryData();
   const [position, setPosition] = useState(data?.position);
-  const [annual, setAnnual] = useState(data?.annual);
-  const { handleSubmit, register } = useForm<ProfileForm & { introduce: string; urls: [] }>({
-    defaultValues: { ...data, introduce: "" },
+  const [annual, setAnnual] = useState(data?.annual === null ? 0 : data?.annual);
+  const { handleSubmit, register } = useForm<Profile>({
+    defaultValues: { ...data, introduce: "", githubUrl: "", linkedInUrl: "", instagramUrl: "" },
   });
   const { mutateAsync } = useProfilMutation();
   const router = useRouter();
@@ -35,10 +30,17 @@ export default function Page() {
   };
 
   const phone = searchParams.get("phoneNumber");
-  const onSubmit = (body: ProfileForm & { introduce: string }) => {
-    console.log("?@!#", data);
-    if (position && annual && phone) {
-      mutateAsync({ ...body, position, annual, phoneNumber: phone }).then(() => {
+  const onSubmit = (body: Profile) => {
+    if (position && String(annual) && phone) {
+      mutateAsync({
+        name: body.name,
+        email: body.email,
+        organization: body.organization,
+        position,
+        annual,
+        phoneNumber: phone,
+        urls: [body.githubUrl, body.linkedInUrl, body.instagramUrl],
+      }).then(() => {
         router.push("user");
       });
     }
@@ -111,9 +113,21 @@ export default function Page() {
         </InputWrapper>
         <InputWrapper>
           <LabelWrapper>
-            <Label>링크</Label>
+            <Label>깃허브</Label>
           </LabelWrapper>
-          {/* <Input size="medium" placeholder="주소를 입력해주세요." register={register("urls")} /> */}
+          <Input size="medium" placeholder="깃허브 주소를 입력해주세요." register={register("githubUrl")} />
+        </InputWrapper>
+        <InputWrapper>
+          <LabelWrapper>
+            <Label>링크드인</Label>
+          </LabelWrapper>
+          <Input size="medium" placeholder="링크드인 주소를 입력해주세요." register={register("linkedInUrl")} />
+        </InputWrapper>
+        <InputWrapper>
+          <LabelWrapper>
+            <Label>인스타그램 링크</Label>
+          </LabelWrapper>
+          <Input size="medium" placeholder="인스타그램 주소를 입력해주세요." register={register("instagramUrl")} />
         </InputWrapper>
 
         <Button type="submit" size="medium" label="시작하기" />
@@ -154,6 +168,7 @@ const InputContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  padding-bottom: 2rem;
 `;
 
 const InputWrapper = styled.div``;
