@@ -12,30 +12,30 @@ labels:
   'Component':
     include:
       - '\bComponent\b'
-  'Fix':
+  'fix':
     include:
       - '\bFix\b'
-  'Bug':
+  'bug':
     include:
       - '\bBug\b'
-  'Page':
+  'page':
     include:
       - '\bPage\b'
-  'Docs':
+  'docs':
     include:
       - '\bDocs\b'
-  'Setting':
+  'setting':
     include:
       - '\bSetting\b'
-  'Refactoring':
+  'refactoring':
     include:
       - '\bRefactoring\b'
-  'Help wanted':
+  'help wanted':
     include:
       - '\binclude\b'
-  'Test':
+  'test':
     include:
       - '\bTest\b'
-  'Feature':
+  'feat':
     include:
       - '\bFeature\b'
