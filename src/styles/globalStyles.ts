@@ -33,6 +33,9 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: "Pretendard";
+    white-space: pre-wrap;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
   a {
     -webkit-tap-highlight-color: transparent;
