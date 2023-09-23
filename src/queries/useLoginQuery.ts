@@ -9,11 +9,7 @@ const fetch = async (phoneNumber: string) => {
 };
 
 const useLoginQuery = (phoneNumber: string) => {
-  return useQuery(queryKeys.login, () => fetch(phoneNumber), {
-    enabled: false,
-    cacheTime: Infinity,
-    staleTime: Infinity,
-  });
+  return useQuery(queryKeys.login, () => fetch(phoneNumber), { enabled: false });
 };
 
 export default useLoginQuery;

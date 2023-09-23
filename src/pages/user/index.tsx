@@ -1,10 +1,11 @@
 import Card from "@/components/Card";
+import FilterBottomSheet from "@/components/FilterBottomSheet";
 import WebAppLayout from "@/components/WebAppLayout";
 import { DUMMY_CARD_LIST } from "@/constants/DUMMY_DATA";
 import { Spacing } from "@/styles/Spacing";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-export default function page() {
+export default function Page() {
   return (
     <WebAppLayout backgroundcolor="#F2F4FB">
       <TitleMiddle>명함 목록</TitleMiddle>
@@ -22,7 +23,9 @@ export default function page() {
 
       <Title>
         <TitleLeft>명함 목록</TitleLeft>
-        <TitleRight></TitleRight>
+        <TitleRight>
+          <FilterBottomSheet />
+        </TitleRight>
       </Title>
 
       <Spacing size={22} />
@@ -51,6 +54,8 @@ const Title = styled.div`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const TitleLeft = styled.div``;

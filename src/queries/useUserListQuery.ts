@@ -9,7 +9,7 @@ const fetch = async (position: Position, order: Order) => {
 };
 
 const useUserListQuery = (position: Position, order: Order) => {
-  return useQuery(querykeys.userList(position, order), () => fetch(position, order));
+  return useQuery(querykeys.userList, () => fetch(position, order), {});
 };
-
+ 
 export default useUserListQuery;

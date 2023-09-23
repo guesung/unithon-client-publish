@@ -15,7 +15,7 @@ export const DUMMY_CARD_LIST = [
   {
     name: "박규성",
     email: "email@gmail.com",
-    phoneNumber: "01012345678",
+    phoneNumber: "01012345679",
     position: "FRONT_END" as const,
     organization: "소속",
     annual: 4,
@@ -28,7 +28,7 @@ export const DUMMY_CARD_LIST = [
   {
     name: "박규성",
     email: "email@gmail.com",
-    phoneNumber: "01012345678",
+    phoneNumber: "01012345670",
     position: "FRONT_END" as const,
     organization: "소속",
     annual: 4,
