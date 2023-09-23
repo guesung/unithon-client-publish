@@ -4,7 +4,7 @@ import pretendardBold from "../asstes/fonts/Pretendard-Bold.woff2";
 import pretendardRegular from "../asstes/fonts/Pretendard-Regular.woff2";
 
 const GlobalStyle = createGlobalStyle`
-   @font-face {
+  @font-face {
     font-family: "Pretendard";
     font-weight: normal;
     src: url(${pretendardRegular}) format("woff2");

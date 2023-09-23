@@ -1,10 +1,12 @@
-import { useMutation } from "react-query";
-import { Profile } from "@/types/profile";
 import httpClient from "@/services/httpClient";
-import { CSVForm } from "@/types/csv";
+import { useMutation } from "react-query";
 
-const fetch = async (params: CSVForm) => {
-  const { data } = await httpClient.post("/users/csv", params);
+const fetch = async (params: FormData) => {
+  const { data } = await httpClient.post("/users/csv", params, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return data;
 };
 

@@ -19,11 +19,11 @@ export default function Step1({ handleNextClick }: Step1Props) {
   const handleSubmit = () => {
     const formData = new FormData();
     formData.append("file", watch("csv")[0]);
-    mutate({ file: formData });
+    mutate(formData);
     handleNextClick();
   };
 
-  const isFileUploaded = !!watch("csv");
+  const isfileuploaded = !!watch("csv");
 
   return (
     <div>
@@ -41,8 +41,8 @@ export default function Step1({ handleNextClick }: Step1Props) {
       <SubTitle>파일 첨부</SubTitle>
       <Spacing size={10} />
 
-      <CSVInputLabel htmlFor="csv" isFileUploaded={isFileUploaded}>
-        {!isFileUploaded ? (
+      <CSVInputLabel htmlFor="csv" isfileuploaded={isfileuploaded}>
+        {!isfileuploaded ? (
           <>
             <CloudArrowUpSolid />
             <LabelText color="#8D8D8D">CSV 파일을 업로드 할 수 있습니다.</LabelText>
@@ -85,7 +85,7 @@ const HiddenInput = styled.input`
   display: none;
 `;
 
-const CSVInputLabel = styled.label<{ isFileUploaded: boolean }>`
+const CSVInputLabel = styled.label<{ isfileuploaded: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,8 +94,8 @@ const CSVInputLabel = styled.label<{ isFileUploaded: boolean }>`
   width: 34rem;
   height: 16rem;
   border-radius: 4px;
-  border: ${({ isFileUploaded }) => (!isFileUploaded ? "1px dashed #D2D1D1" : "1px solid #4473F5")};
-  background-color: ${({ isFileUploaded }) => (!isFileUploaded ? "#FFFFFF" : "#F2F4FB")};
+  border: ${({ isfileuploaded }) => (!isfileuploaded ? "1px dashed #D2D1D1" : "1px solid #4473F5")};
+  background-color: ${({ isfileuploaded }) => (!isfileuploaded ? "#FFFFFF" : "#F2F4FB")};
 `;
 
 const LabelText = styled.p<{ color: string }>`
