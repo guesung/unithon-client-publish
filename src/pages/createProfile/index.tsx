@@ -49,7 +49,7 @@ export default function Page() {
   return (
     <WebAppLayout>
       <AvatarWrapper>
-        <Avatar position={data?.position} />
+        <Avatar size="BIG" position={data?.position} />
       </AvatarWrapper>
       <InputContainer onSubmit={handleSubmit(onSubmit)}>
         <InputWrapper>
