@@ -122,7 +122,7 @@ const IntroductionBottom = styled.div``;
 
 const Introduce = styled.div`
   height: 4rem;
-  width: 19rem;
+  max-width: 19rem;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
