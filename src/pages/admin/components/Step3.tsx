@@ -43,8 +43,6 @@ export default function Step3() {
 
   return (
     <StyledLayout>
-      <StyledEventTitle>이벤트</StyledEventTitle>
-
       <StyledTimer>{timer}</StyledTimer>
       <StyledDescription>MBTI에 대해 이야기 해주세요!</StyledDescription>
 
@@ -85,42 +83,45 @@ const StyledEventTitle = styled.div`
 `;
 
 const StyledTimer = styled.div`
-  padding-top: 20rem;
+  padding-top: 13rem;
   color: #4473f5;
   font-weight: 500;
-  font-size: 4.4rem;
+  font-size: 5rem;
   text-align: center;
 `;
 
 const StyledDescription = styled.div`
   padding-top: 0.6rem;
-  font-size: 9rem;
+  font-size: 7rem;
   font-weight: 700;
+  text-align: center;
 `;
 
 const StyledUserCardContainer = styled.div`
   display: flex;
-  column-gap: 3rem;
+  margin-top: 4rem;
+  column-gap: 1.3rem;
   justify-content: center;
 `;
 
 const StyledCardWarpper = styled.div`
   width: 26rem;
-  height: 28rem;
+  /* height: 28rem; */
   border-radius: 1rem;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-  padding: 3rem 3rem 2.5rem;
+  padding: 6rem 3rem;
   text-align: center;
 `;
 
 const StyledAvatarWrapper = styled.div`
   display: grid;
   justify-content: center;
+  margin-bottom: 1rem;
 `;
 
 const StyledUserName = styled.div`
   padding-top: 1rem;
-  font-size: 3.8rem;
+  font-size: 3rem;
   font-weight: 700;
 `;
 
@@ -134,5 +135,5 @@ const StyledPosition = styled.div`
 const StyledIntroduce = styled.div`
   padding-top: 1.4rem;
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 `;
